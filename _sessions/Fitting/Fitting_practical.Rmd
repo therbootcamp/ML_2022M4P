@@ -4,7 +4,7 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
       <font style='font-style:normal'>Applied Machine Learning with R</font><br>
-      <a href='https://therbootcamp.github.io/AML_2021AMLD/'>
+      <a href='https://therbootcamp.github.io/ML_2022M4P/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
       <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
         <i class='fab fa-linkedin' style='font-size: .9em;'></i>
       </a>
       <a href='https://therbootcamp.github.io'>
-        <font style='font-style:normal'>The R Bootcamp @ AMLD</font>
+        <font style='font-style:normal'>The R Bootcamp @ Methods 4 Postocs</font>
       </a>
     </td>
     <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
@@ -35,8 +35,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = TRUE, 
-                      eval = TRUE, 
+                      echo = FALSE, 
+                      eval = FALSE, 
                       warning = FALSE,
                       message = FALSE)
 
@@ -105,31 +105,25 @@ airbnb <- read_csv(file = "1_Data/airbnb.csv")
 airbnb <- read_csv(file = "1_Data/airbnb.csv")
 ```
 
-5. Take a look at the first few rows of the dataset by printing it to the console.
-
-```{r}
-airbnb
-```
-
-6. Print the numbers of rows and columns using the `dim()` function.
+5. Take a look at the data using `glimpse()`.
 
 ```{r, echo = TRUE, eval = FALSE}
-# Print number of rows and columns of airbnb
-dim(XX)
+# get an overview over the data
+glimpse(XX)
 ```
 
 ```{r}
-# Print number of rows and columns of airbnb
-dim(airbnb)
+# get an overview over the data
+glimpse(airbnb)
 ```
 
-7. Open the dataset in a new window using `View()`. How does it look?
+6. Open the dataset in a new window using `View()`. How does it look?
 
 ```{r, echo = TRUE, eval = FALSE}
 View(XX)
 ```
 
-8. Familiarize yourself with the names of the dataset by looking at the feature names using `names()`.
+7. Familiarize yourself with the names of the dataset by looking at the feature names using `names()`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Print column names of airbnb
@@ -143,7 +137,7 @@ names(airbnb)
 
 ### B - Set up the recipe
 
-1. By specifying a `recipe`, we specify (a) what to predict, (b) how to predict it (the features), (c) how to prepare our data. Create your first recipe called `airbnb_recipe`, by adding a formula to specify that we want to predict `price` with the number of people it can accommodate (`accommodates`):
+1. By specifying a `recipe`, we specify (a) what to predict, (b) how to predict it (the features), and (c) how to prepare our data. Create your first recipe called `airbnb_recipe`, by adding a formula to specify that we want to predict `price` with the number of people it can accommodate (`accommodates`):
 
 - set the formula to `price ~ accommodates`
 - set the data to `airbnb`
@@ -240,7 +234,7 @@ translate(lm_model)
 
 ### D - Fit a regression model
 
-1. Now we can finally specify our model `workflow` in which we bring the model specification and recipe together, to then fit our model. To do so
+1. Now we can finally specify our model `workflow` in which we bring the model specification and the recipe together, to then fit our model. To do so
 
 - create an object called `lm_workflow`.
 - call the `workflow()` function, to initiate the workflow.
@@ -269,7 +263,7 @@ lm_workflow <-
 lm_workflow
 ```
 
-3. Now it's time to actually fit the model with the `fit()` function. Pass the `lm_workflow` into the fit function and save it as `price_lm`. Also we have to provide the data to the fit function, by specifying the `data` argument. Set `data = airbnb`.
+3. Now it's time to actually fit the model using the `fit()` function. Pass the `lm_workflow` into the fit function and save it as `price_lm`. Also we have to provide the data to the fit function, by specifying the `data` argument. Set `data = airbnb`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Fit the regression model
@@ -303,7 +297,7 @@ tidy(price_lm)
 
 ```{r}
 # For every additional person a flat accommodates, the price of an airbnb is
-# predicted to rise by 27.6$s.
+# predicted to rise by 17.4$s.
 ```
 
 
@@ -356,8 +350,7 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
 
 ```{r}
 # The points do not fall on the line, which indicates that the model fit
-# is not great. Also there are two outliers that cannot be captured by the
-# model.
+# is not great.
 ```
 
 4. Let's quantify our model's fitting results. In a regression-problem setting, the `metrics()` function returns the MAE, RMSE, and the $R^2$ of a model. Compute these indices by passing the `price` variable as `truth` and the `.pred` variable as `estimate` to the `metrics()` function.
@@ -375,11 +368,11 @@ metrics(lm_pred, truth = price, estimate = .pred)
 5. How do you interpret these values?
 
 ```{r}
-# On average, the model commits a prediction error of 29.5 when predicting the 
+# On average, the model commits a prediction error of 23.8 when predicting the 
 # price of an airbnb. The large difference between the MAE and the RMSE indicates
 # That the prediction errors vary very strongly. This is also apparent in the 
 # plot we created before.
-# The R^2 value is 0.338, that is, about 34% of the variation in the data
+# The R^2 value is 0.451, that is, about 45% of the variation in the data
 # can be captured by our model.
 ```
 
@@ -504,8 +497,7 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
 
 ```{r}
 # The model seems to do a little better than before, but the points still do not
-# really fall on the line. Also, the model still cannot account for the two
-# price outliers.
+# really fall on the line.
 ```
 
 9. Using the `metrics()` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
@@ -524,13 +516,13 @@ metrics(lm_pred, truth = price, estimate = .pred)
 10. How do you interpret these values? How do they compare to the ones you obtained previously?
 
 ```{r}
-# On average, the model commits a prediction error of 28.7 when predicting the 
-# price of an airbnb. This is even larger than with only the one predictor.
+# On average, the model commits a prediction error of 22.9 when predicting the 
+# price of an airbnb. This is already a bit lower than the one with just one predictor.
 # The large difference between the MAE and the RMSE indicates
 # that the prediction errors vary very strongly. This is also apparent in the 
 # plot we created before.
-# The R^2 value is 0.365, that is, about 37% of the variation in the data
-# can be captured by our model, which is more than twice of what the model with
+# The R^2 value is 0.517, that is, about 52% of the variation in the data
+# can be captured by our model, which is about 1.5 times of what the model with
 # only one feature explained.
 ```
 
@@ -627,7 +619,8 @@ ggplot(lm_pred, aes(x = .pred, y = price)) +
 ```
 
 ```{r}
-# Even with all predictors, the model seems to have some issues.
+# With all predictors, the model still has some issues, but overall, seems to do
+# a decent job.
 ```
 
 7. Using the `metrics` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
@@ -646,12 +639,12 @@ metrics(lm_pred, truth = price, estimate = .pred)
 8. How do you interpret these values? How do they compare to the ones you obtained previously?
 
 ```{r}
-# On average, the model commits a prediction error of 29.7 when predicting the 
-# price of an airbnb. This is again larger than with only the one predictor.
+# On average, the model commits a prediction error of 21.0 when predicting the 
+# price of an airbnb. This is again a bit lower than the one with four predictors.
 # The large difference between the MAE and the RMSE indicates
 # that the prediction errors vary very strongly. This is also apparent in the 
 # plot we created before.
-# The R^2 value is 0.38, that is, about 38% of the variation in the data
+# The R^2 value is 0.586, that is, about 59% of the variation in the data
 # can be captured by our model.
 ```
 
@@ -668,16 +661,16 @@ Now it's time to do a classification task! Recall that in a classification task,
 class(airbnb$host_superhost)
 ```
 
-2. The `host_superhost` variable is of class `logical`. Therefore, we have to change it to `factor`. **Important note**: In binary classification tasks, the **first** factor level will be chosen as positive. We therefore explicitly specify, that `TRUE` be the first level.
+2. The `host_superhost` variable is of class `character`. Therefore, we have to change it to `factor`. **Important note**: In binary classification tasks, the **first** factor level will be chosen as positive. We therefore explicitly specify, that `yes` be the first level.
 
 ```{r, echo = TRUE}
-# Recode host_superhost to be a factor with TRUE as first level
+# Recode host_superhost to be a factor with "yes" as first level
 airbnb <-
   airbnb %>% 
-  mutate(host_superhost = factor(host_superhost, levels = c(TRUE, FALSE)))
+  mutate(host_superhost = factor(host_superhost, levels = c("yes", "no")))
 ```
 
-3. Check again, whether `host_superhost` is now a factor, and check whether the order of the levels is as intended using `levels()` (the order should be `"TRUE", "FALSE"`).
+3. Check again, whether `host_superhost` is now a factor, and check whether the order of the levels is as intended using `levels()` (the order should be `"yes", "no"`).
 
 ```{r, echo = TRUE, eval = FALSE}
 XX(airbnb$host_superhost)
@@ -775,7 +768,7 @@ superhost_glm <-
 
 ### J - Assess model performance
 
-1. Now it's time to evaluate the classification models' performance. We can again use the `metrics()` function to do so. First, we again create a dataset containing the predicted and true values. This time, we call the `predict()` function twice: once to obtain the predicted classes, and once to obtain the probabilities, with which the classes are predicted.
+1. Now it's time to evaluate the classification models' performance. We can again use the `metrics()` function to do so. First, we again create a dataset containing the predicted and actual values. This time, we call the `predict()` function twice: once to obtain the predicted classes, and once to obtain the probabilities, with which the classes are predicted.
 
 ```{r, echo = TRUE}
 # Get fitted values from the Private_glm object
@@ -785,18 +778,18 @@ logistic_pred <-
   bind_cols(airbnb %>% select(host_superhost))
 ```
 
-2. Take a look at the `logistic_pred` object and make sure you understand what the variables mean.
+2. Take a look at the `logistic_pred` object and think about what the variables mean. If you're unsure, discuss with your neighbor or ask =)
 
 ```{r}
 # The first two variables contain the predicted class probabilities and were
 # created from the first call to predict(), where type = "prob" was used.
-# The third variable, .pred_class, contains the predicted class. If the .pred_TRUE
+# The third variable, .pred_class, contains the predicted class. If the .pred_yes
 # variable in a given row was >=.5, this will be TRUE, otherwise it will be FALSE.
-# Finally, the last variable, host_superhost, contains the true values.
+# Finally, the last variable, host_superhost, contains the actual values.
 ```
 
 
-3. Now, get the confusion matrix using the `conf_mat()` function and passing it the `host_superhost` variable as `truth`, and th `.pred_class` variable as `estimate`. Just by looking at the confusion matrix, do you think the model is doing well?
+3. Now, get the confusion matrix using the `conf_mat()` function and passing it the `host_superhost` variable as `truth`, and the `.pred_class` variable as `estimate`. Just by looking at the confusion matrix, do you think the model is doing well?
 
 ```{r, echo = TRUE, eval = FALSE}
 XX(logistic_pred, truth = XX, estimate = XX)
@@ -820,21 +813,21 @@ logistic_pred %>%
   table() %>% 
   prop.table() %>% 
   round(2)
-# Just by predicting always FALSE, the model could reach an accuracy of 60%.
-# By using all the features available, the model can do about 15 percentage points
+# Just by predicting always "no", the model could reach an accuracy of 58%.
+# By using all the features available, the model can do about 16 percentage points
 # better than that. According to some, completely arbitrary, guidelines, the 
-# kappa value of .49 can be considered moderate or fair to good.
+# kappa value of .477 can be considered moderate or fair to good.
 # Whether such values are acceptable depends on the use case.
 ```
 
-6. The metrics we just looked at are based on the class predictions. We can also obtain additional metrics based on the predicted probabilities of class membership. Use the same code as in the last task, but add the name of the column containing the predictied *positive* class probability (`.pred_TRUE`) as an unnamed, fourth argument:
+6. The metrics we just looked at are based on the class predictions. We can also obtain additional metrics based on the predicted probabilities of class membership. Use the same code as in the last task, but add the name of the column containing the predictied *positive* class probability (`.pred_yes`) as an unnamed, fourth argument:
 
 ```{r, echo = TRUE, eval = FALSE}
 XX(logistic_pred, truth = XX, estimate = XX, XX)
 ```
 
 ```{r}
-metrics(logistic_pred, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
+metrics(logistic_pred, truth = host_superhost, estimate = .pred_class, .pred_yes)
 ```
 
 7. What does the `roc_auc` value indicate?
@@ -842,10 +835,10 @@ metrics(logistic_pred, truth = host_superhost, estimate = .pred_class, .pred_TRU
 ```{r}
 # It indicates the area under the curve (AUC) of the receiver operator
 # characteristic (ROC) curve. A value of 1 would be perfect, indicating that both 
-# sensitivity and specificity simultaneously take perfect values.
+# sensitivity and specificity simultaneously take on perfect values.
 ```
 
-8. To plot the ROC curve, we can use the `roc_curve()` function, to create sensitivity and specificity values of different cut-offs, and pass this into the `autoplot()` function, to plot the curve. Add the `host_superhost` column as `truth`, and the `.pred_TRUE` column as third, unnamed argument, to the `roc_curve()` function and plot the curve.
+8. To plot the ROC curve, we can use the `roc_curve()` function, to create sensitivity and specificity values of different cut-offs, and pass this into the `autoplot()` function, to plot the curve. Add the `host_superhost` column as `truth`, and the `.pred_yes` column as third, unnamed argument, to the `roc_curve()` function and plot the curve.
 
 ```{r, echo = TRUE, eval = FALSE}
 XX(logistic_pred, truth = XX, XX) %>% 
@@ -853,7 +846,7 @@ XX(logistic_pred, truth = XX, XX) %>%
 ```
 
 ```{r}
-roc_curve(logistic_pred, truth = host_superhost, .pred_TRUE) %>% 
+roc_curve(logistic_pred, truth = host_superhost, .pred_yes) %>% 
   autoplot()
 ```
 
@@ -950,11 +943,11 @@ library(tidyverse)
 library(tidymodels)
 ```
 
-The dataset contains data of the 1191 apartments that were added on Airbnb for the Berlin area in the year 2018.
+The dataset contains data of 500 apartments that were added on Airbnb for the Berlin area in the year 2018.
 
 |File  |Rows | Columns |
 |:----|:-----|:------|
-|[airbnb.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36)| 1191 | 23|
+|[airbnb.csv](https://raw.githubusercontent.com/therbootcamp/ML_2022M4P/master/TheRBootcamp/1_data/airbnb.csv)| 500 | 23|
 
 
 #### Variable description of `airbnb`
@@ -970,7 +963,7 @@ The dataset contains data of the 1191 apartments that were added on Airbnb for t
 |district| The district the Airbnb is located in |
 |host_respons_time| Host average response time|
 |host_response_rate| Host response rate |
-|host_superhost| Whether host is a superhost TRUE/FALSE |
+|host_superhost| Whether host is a superhost "yes"/"no" |
 |host_listings_count| Number of listings the host has |
 |review_scores_accuracy| Accuracy of information rating [0, 10] |
 |review_scores_cleanliness| Cleanliness rating  [0, 10]|
@@ -978,12 +971,12 @@ The dataset contains data of the 1191 apartments that were added on Airbnb for t
 |review_scores_communication| Communication rating [0, 10] |
 |review_scores_location| Location rating [0, 10] |
 |review_scores_value| Value rating [0, 10] |
-|kitchen| Kitchen available TRUE/FALSE |
-|tv| TV available TRUE/FALSE |
-|coffe_machine| Coffee machine available TRUE/FALSE|
-|dishwasher| Dishwasher available TRUE/FALSE|
-|terrace| Terrace/balcony available TRUE/FALSE|
-|bathtub| Bathtub available TRUE/FALSE|
+|kitchen| Kitchen available "yes"/"no" |
+|tv| TV available "yes"/"no" |
+|coffe_machine| Coffee machine available "yes"/"no"|
+|dishwasher| Dishwasher available "yes"/"no"|
+|terrace| Terrace/balcony available "yes"/"no"|
+|bathtub| Bathtub available "yes"/"no"|
 
 
 ## Functions

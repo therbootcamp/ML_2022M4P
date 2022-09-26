@@ -4,7 +4,7 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
   <tr style='border:none'>
     <td style='display:block;width:100%;text-align:left;vertical-align:bottom;padding:0;margin:0;border:none' nowrap>
       <font style='font-style:normal'>Applied Machine Learning with R</font><br>
-      <a href='https://therbootcamp.github.io/AML_2021AMLD/'>
+      <a href='https://therbootcamp.github.io/ML_2022M4P/'>
         <i class='fas fa-clock' style='font-size:.9em;' ></i>
       </a>
       <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "<table style='table-layout:fixed;width:100%;border:0;padding:0;margin:0
         <i class='fab fa-linkedin' style='font-size: .9em;'></i>
       </a>
       <a href='https://therbootcamp.github.io'>
-        <font style='font-style:normal'>The R Bootcamp @ AMLD</font>
+        <font style='font-style:normal'>The R Bootcamp @ Methods 4 Postdocs</font>
       </a>
     </td>
     <td style='width:100%;vertical-align:bottom;text-align:right;padding:0;margin:0;border:none'>
@@ -35,8 +35,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = TRUE, 
-                      eval = TRUE, 
+                      echo = FALSE, 
+                      eval = FALSE, 
                       warning = FALSE,
                       message = FALSE)
 
@@ -90,7 +90,7 @@ airbnb <- read_csv(file = "1_Data/airbnb.csv")
 airbnb <- read_csv(file = "1_Data/airbnb.csv")
 ```
 
-5. You should already be familiar with the dataset, but you can refresh your memory by checking the variable names with `names()` and the contents using `View()`.
+5. You should already be familiar with the dataset, but you can refresh your memory by checking the variable names with `names()` and the contents using `glimpse()`.
 
 ### B - Splitting the data into training and test set
 
@@ -489,17 +489,8 @@ price_rf <-
 ```
 
 
-26. The `tidy()` function won't work with random forest fit objects, but we can print the output using the following code:
 
-
-```{r, echo = TRUE}
-# print the random forest output
-price_rf %>% 
-  extract_fit_parsnip() %>% 
-  pluck("fit")
-```
-
-27. Using the `predict()` function, to extract the model predictions from `price_rf` and bind them together with the true values from `airbnb_train` using `bind_cols()`.
+26. Using the `predict()` function, to extract the model predictions from `price_rf` and bind them together with the true values from `airbnb_train` using `bind_cols()`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # get predicted values from training data
@@ -518,7 +509,7 @@ rf_pred <-
 ```
 
 
-28. Using the `metrics()` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
+27. Using the `metrics()` function, evaluate the model performance. Pass it the `price` variable as `truth` and the `.pred` variable as `estimate`.
 
 ```{r, echo = TRUE, eval = FALSE}
 # evaluate performance
@@ -531,10 +522,10 @@ metrics(rf_pred, truth = price, estimate = .pred)
 
 ```
 
-29. How does the training performance of the random forest compare to the ones of the other two models?
+28. How does the training performance of the random forest compare to the ones of the other two models?
 
 
-30. Using the following code, plot the fitted against the true value, to judge how well our model performed.
+29. Using the following code, plot the fitted against the true value, to judge how well our model performed.
 
 ```{r, echo = TRUE}
 # use the rf_pred object to generate the plot
@@ -606,7 +597,8 @@ metrics(rf_pred_test, truth = price, estimate = .pred)
 4. Which model performs the best based on the test data? 
 
 ```{r}
-# The random forest predictions are still the most accurate.
+# The random forest has the lowest errors, but the regression model has the
+# highest R2 values.
 ```
 
 5. Which performance stays the most constant?
@@ -618,32 +610,26 @@ metrics(rf_pred_test, truth = price, estimate = .pred)
 # in comparison to it's training performance.
 ```
 
-5. Which of the three models has the best prediction performance?
-
-```{r}
-# The random forest predictions are still the most accurate.
-```
-
 
 ### D - Classification
 
-1. Let's again turn to a classification example. We will again focus on the `host_superhost` variable. Like in the previous practical, we first have to change our criterion to be a `factor`. We again explicitly specify `TRUE` as first level.
+1. Let's again turn to a classification example. We will again focus on the `host_superhost` variable. Like in the previous practical, we first have to change our criterion to be a `factor`. We again explicitly specify `"yes"` as first level.
 
 ```{r, echo = TRUE}
-# Recode host_superhost to be a factor with TRUE as first level
+# Recode host_superhost to be a factor with yes as first level
 airbnb <-
   airbnb %>% 
-  mutate(host_superhost = factor(host_superhost, levels = c(TRUE, FALSE)))
+  mutate(host_superhost = factor(host_superhost, levels = c("yes", "no")))
 ```
 
 2. Create a split that balances the proportion of the two levels of `host_superhost` and that uses 80% of the data for the training.
 
 ```{r, echo = TRUE, eval = FALSE}
-airbnb_split <- initial_split(XX, prop = XX, strata = XX)
+airbnb_split <- initial_split(XX, prop = XX)
 ```
 
 ```{r}
-airbnb_split <- initial_split(airbnb, prop = .8, strata = host_superhost)
+airbnb_split <- initial_split(airbnb, prop = .8)
 ```
 
 3. From the initial split object, creat a training and a test set, and save them as `airbnb_train` and `airbnb_test`.
@@ -742,18 +728,18 @@ logistic_pred <-
 
 
 
-8. Let's look at different performance metrics. Use the `metrics()` function and pass it the `host_superhost` variable as `truth`, the `.pred_class` variable as `estimate`, and `.pred_TRUE` as last argument.
+8. Let's look at different performance metrics. Use the `metrics()` function and pass it the `host_superhost` variable as `truth`, the `.pred_class` variable as `estimate`, and `.pred_yes` as last argument.
 
 ```{r, echo = TRUE, eval = FALSE}
 XX(logistic_pred, truth = XX, estimate = XX, XX)
 ```
 
 ```{r}
-metrics(logistic_pred, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
+metrics(logistic_pred, truth = host_superhost, estimate = .pred_class, .pred_yes)
 ```
 
 
-9. Plot the ROC-curve using the `roc_curve()` function, to create sensitivity and specificity values of different cut-offs, and pass this into the `autoplot()` function, to plot the curve. Add the `host_superhost` column as `truth`, and the `.pred_TRUE` column as third, unnamed argument, to the `roc_curve()` function and plot the curve.
+9. Plot the ROC-curve using the `roc_curve()` function, to create sensitivity and specificity values of different cut-offs, and pass this into the `autoplot()` function, to plot the curve. Add the `host_superhost` column as `truth`, and the `.pred_yes` column as third, unnamed argument, to the `roc_curve()` function and plot the curve.
 
 ```{r, echo = TRUE, eval = FALSE}
 XX(logistic_pred, truth = XX, XX) %>% 
@@ -761,7 +747,7 @@ XX(logistic_pred, truth = XX, XX) %>%
 ```
 
 ```{r}
-roc_curve(logistic_pred, truth = host_superhost, .pred_TRUE) %>% 
+roc_curve(logistic_pred, truth = host_superhost, .pred_yes) %>% 
   autoplot()
 ```
 
@@ -823,18 +809,18 @@ dt_pred <-
 ```
 
 
-16. Let's look at different performance metrics. Use the `metrics()` function and pass it the `host_superhost` variable as `truth`, the `.pred_class` variable as `estimate`, and `.pred_TRUE` as last argument.
+16. Let's look at different performance metrics. Use the `metrics()` function and pass it the `host_superhost` variable as `truth`, the `.pred_class` variable as `estimate`, and `.pred_yes` as last argument.
 
 
 ```{r}
-metrics(dt_pred, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
+metrics(dt_pred, truth = host_superhost, estimate = .pred_class, .pred_yes)
 ```
 
 
-17. Plot the ROC-curve using the `roc_curve()` function, to create sensitivity and specificity values of different cut-offs, and pass this into the `autoplot()` function, to plot the curve. Add the `host_superhost` column as `truth`, and the `.pred_TRUE` column as third, unnamed argument, to the `roc_curve()` function and plot the curve.
+17. Plot the ROC-curve using the `roc_curve()` function, to create sensitivity and specificity values of different cut-offs, and pass this into the `autoplot()` function, to plot the curve. Add the `host_superhost` column as `truth`, and the `.pred_yes` column as third, unnamed argument, to the `roc_curve()` function and plot the curve.
 
 ```{r}
-roc_curve(dt_pred, truth = host_superhost, .pred_TRUE) %>% 
+roc_curve(dt_pred, truth = host_superhost, .pred_yes) %>% 
   autoplot()
 ```
 
@@ -889,17 +875,17 @@ rf_pred <-
 ```
 
 
-23. Let's look at different performance metrics. Use the `metrics()` function and pass it the `host_superhost` variable as `truth`, the `.pred_class` variable as `estimate`, and `.pred_TRUE` as last argument.
+23. Let's look at different performance metrics. Use the `metrics()` function and pass it the `host_superhost` variable as `truth`, the `.pred_class` variable as `estimate`, and `.pred_yes` as last argument.
 
 
 ```{r}
-metrics(rf_pred, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
+metrics(rf_pred, truth = host_superhost, estimate = .pred_class, .pred_yes)
 ```
 
 24. Plot the ROC-curve using the `roc_curve()` function, to create sensitivity and specificity values of different cut-offs, and pass this into the `autoplot()` function, to plot the curve.
 
 ```{r}
-roc_curve(rf_pred, truth = host_superhost, .pred_TRUE) %>% 
+roc_curve(rf_pred, truth = host_superhost, .pred_yes) %>% 
   autoplot()
 ```
 
@@ -940,24 +926,24 @@ rf_pred_test <-
 
 ```{r}
 # evaluate performance
-metrics(glm_pred_test, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
-metrics(dt_pred_test, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
-metrics(rf_pred_test, truth = host_superhost, estimate = .pred_class, .pred_TRUE)
+metrics(glm_pred_test, truth = host_superhost, estimate = .pred_class, .pred_yes)
+metrics(dt_pred_test, truth = host_superhost, estimate = .pred_class, .pred_yes)
+metrics(rf_pred_test, truth = host_superhost, estimate = .pred_class, .pred_yes)
 ```
 
 4. Which model performs the best based on the test data? 
 
 ```{r}
-# The random forest predictions are still the most accurate.
+# The random forest predictions are the most accurate.
 ```
 
 5. Plot the ROC-curves of the test performances.
 ```{r}
-roc_curve(glm_pred_test, truth = host_superhost, .pred_TRUE) %>% 
+roc_curve(glm_pred_test, truth = host_superhost, .pred_yes) %>% 
   autoplot()
-roc_curve(dt_pred_test, truth = host_superhost, .pred_TRUE) %>% 
+roc_curve(dt_pred_test, truth = host_superhost, .pred_yes) %>% 
   autoplot()
-roc_curve(rf_pred_test, truth = host_superhost, .pred_TRUE) %>% 
+roc_curve(rf_pred_test, truth = host_superhost, .pred_yes) %>% 
   autoplot()
 ```
 
@@ -1055,11 +1041,11 @@ library(tidyverse)
 library(tidymodels)
 ```
 
-The dataset contains data of the 1191 apartments that were added on Airbnb for the Berlin area in the year 2018.
+The dataset contains data of 500 apartments that were added on Airbnb for the Berlin area in the year 2018.
 
 |File  |Rows | Columns |
 |:----|:-----|:------|
-|[airbnb.csv](https://raw.githubusercontent.com/therbootcamp/ML_2019Oct/master/1_Data/college_train.csv?token=AGKBX5SLEV3PLWUVQ4NCUB2427V36)| 1191 | 23|
+|[airbnb.csv](https://raw.githubusercontent.com/therbootcamp/ML_2022M4P/master/TheRBootcamp/1_data/airbnb.csv)| 500 | 23|
 
 
 #### Variable description of `airbnb`
@@ -1075,7 +1061,7 @@ The dataset contains data of the 1191 apartments that were added on Airbnb for t
 |district| The district the Airbnb is located in |
 |host_respons_time| Host average response time|
 |host_response_rate| Host response rate |
-|host_superhost| Whether host is a superhost TRUE/FALSE |
+|host_superhost| Whether host is a superhost "yes"/"no" |
 |host_listings_count| Number of listings the host has |
 |review_scores_accuracy| Accuracy of information rating [0, 10] |
 |review_scores_cleanliness| Cleanliness rating  [0, 10]|
@@ -1083,12 +1069,12 @@ The dataset contains data of the 1191 apartments that were added on Airbnb for t
 |review_scores_communication| Communication rating [0, 10] |
 |review_scores_location| Location rating [0, 10] |
 |review_scores_value| Value rating [0, 10] |
-|kitchen| Kitchen available TRUE/FALSE |
-|tv| TV available TRUE/FALSE |
-|coffe_machine| Coffee machine available TRUE/FALSE|
-|dishwasher| Dishwasher available TRUE/FALSE|
-|terrace| Terrace/balcony available TRUE/FALSE|
-|bathtub| Bathtub available TRUE/FALSE|
+|kitchen| Kitchen available "yes"/"no" |
+|tv| TV available "yes"/"no" |
+|coffe_machine| Coffee machine available "yes"/"no"|
+|dishwasher| Dishwasher available "yes"/"no"|
+|terrace| Terrace/balcony available "yes"/"no"|
+|bathtub| Bathtub available "yes"/"no"|
 
 
 ## Functions

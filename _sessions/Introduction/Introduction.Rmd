@@ -2,10 +2,10 @@
 title: "Welcome"
 author: "Applied Machine Learning with R<br>
   <a href='https://therbootcamp.github.io'>
-    The R Bootcamp @ AMLD
+    The R Bootcamp @ Methods 4 Postdocs
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/AML_2021AMLD/'>
+  <a href='https://therbootcamp.github.io/ML_2022M4P/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Applied Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "November 2021"
+date: "October 2022"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-      Applied Machine Learning with R @ AMLD  | November 2021
+      Applied Machine Learning with R @ M4P  | October 2022
       </font>
     </a>
     </span>
@@ -70,7 +70,7 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 Find our Materials under:
 
-<font style="font-size:24px" color="#F62D73"><a href="https://therbootcamp.github.io/AML_2021AMLD/"><b>therbootcamp.com/AML_2021AMLD</b></a></font><br><br>
+<font style="font-size:24px" color="#F62D73"><a href="https://therbootcamp.github.io/ML_2022M4P/"><b>therbootcamp.com/ML_2022M4P</b></a></font><br><br>
 
 
 ]
@@ -78,7 +78,7 @@ Find our Materials under:
 .pull-right5[
 
 <br><br>
-<iframe src="https://therbootcamp.github.io/AML_2021AMLD" width="500" height="500"></iframe>
+<iframe src="https://therbootcamp.github.io/ML_2022M4P" width="500" height="500"></iframe>
 
 ]
 
@@ -337,8 +337,7 @@ knitr::include_graphics("image/models.png")
   <li class="m2"><span><high>Materials</high>
   <br><br>
   <ul class="level">
-    <li><span>Permanently <a href="https://therbootcamp.github.io/EDA_2019CSS/">available online</a></span></li>
-    <li><span>PDFs will be available later</span></li>
+    <li><span>Permanently <a href="https://therbootcamp.github.io/ML_2022M4P/">available online</a></span></li>
   </ul>
   </span></li>
 </ul>
@@ -388,9 +387,9 @@ knitr::include_graphics("image/models.png")
 .pull-right5[
 <br>
 
-  <iframe src="https://therbootcamp.github.io/AML_2020AMLD/_sessions/Fitting/Fitting_practical.html" height="480px" width = "500px"></iframe>
+  <iframe src="https://therbootcamp.github.io/ML_2022M4P/_sessions/Fitting/Fitting_practical.html" height="480px" width = "500px"></iframe>
 
-  Example: <a href="https://therbootcamp.github.io/AML_2020AMLD/_sessions/Fitting/Fitting_practical.html">Fitting Practical </a>
+  Example: <a href="https://therbootcamp.github.io/ML_2022M4P/_sessions/Fitting/Fitting_practical.html">Fitting Practical </a>
 
 ]
 
@@ -410,5 +409,5 @@ knitr::include_graphics("image/models.png")
 
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/AML_2021AMLD/index.html>Schedule</a></h1>
+<h1><a href=https://therbootcamp.github.io/ML_2022M4P/index.html>Schedule</a></h1>
 

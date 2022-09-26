@@ -2,10 +2,10 @@
 title: "Fitting"
 author: "Applied Machine Learning with R<br>
   <a href='https://therbootcamp.github.io'>
-    The R Bootcamp @ AMLD
+    The R Bootcamp @ Methods 4 Postdocs
   </a>
   <br>
-  <a href='https://therbootcamp.github.io/AML_2021AMLD/'>
+  <a href='https://therbootcamp.github.io/ML_2022M4P/'>
     <i class='fas fa-clock' style='font-size:.9em;'></i>
   </a>&#8239; 
   <a href='https://therbootcamp.github.io'>
@@ -17,7 +17,7 @@ author: "Applied Machine Learning with R<br>
   <a href='https://www.linkedin.com/company/basel-r-bootcamp/'>
     <i class='fab fa-linkedin' style='font-size: .9em;'></i>
   </a>"
-date: "November 2021"
+date: "October 2022"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
@@ -45,7 +45,7 @@ layout: true
     </a>
     <a href="https://therbootcamp.github.io/">
       <font color="#7E7E7E">
-      Applied Machine Learning with R @ AMLD  | November 2021
+      Applied Machine Learning with R @ M4P  | October 2022
       </font>
     </a>
     </span>
@@ -389,7 +389,7 @@ bad_err + labs(title=element_blank(),subtitle = element_blank())
   </span></li>
 </ul>
 
-$$MSE = \frac{1}{n}\sum_{i \in 1,...,n}(Y_{i} - \hat{Y}_{i})^{2}$$
+$$MSE = \frac{1}{n}\sum_{i = 1}^{n}(Y_{i} - \hat{Y}_{i})^{2}$$
 
 <ul>
   <li class="m2"><span><b>Mean Absolute Error (MAE)</b>
@@ -400,7 +400,7 @@ $$MSE = \frac{1}{n}\sum_{i \in 1,...,n}(Y_{i} - \hat{Y}_{i})^{2}$$
   </span></li>
 </ul>
 
-$$ MAE = \frac{1}{n}\sum_{i \in 1,...,n} \lvert Y_{i} - \hat{Y}_{i} \rvert$$
+$$ MAE = \frac{1}{n}\sum_{i = 1}^{n} \lvert Y_{i} - \hat{Y}_{i} \rvert$$
 
 
 </p>
@@ -566,6 +566,34 @@ class: center,  middle
 <img src="https://www.tidymodels.org/images/tidymodels.png" width=240px><br>
 <font style="font-size:10px">from <a href="https://www.tidymodels.org/packages/">tidymodels.org</a></font>
 </p>
+
+---
+
+.pull-left4[
+
+# tidymodels
+
+<ul>
+  <li class="m1"><span><mono>tidymodels</mono> is a new meta-package for tidy ML in R.</span></li>
+  <li class="m2"><span>Multiple packages span every important step of ML.</span></li>
+</ul>
+
+<br>
+<p align = "center">
+<img src="https://www.tidymodels.org/images/tidymodels.png" width=180px><br>
+<font style="font-size:10px">from <a href="https://www.tidymodels.org/packages/">tidymodels.org</a></font>
+</p>
+
+]
+
+.pull-right5[
+
+<p align = "center">
+<br>
+<img src="image/tidymodels.png" height=560px><br>
+</p>
+
+]
 
 ---
 
@@ -955,6 +983,6 @@ logistic_pred %>%
 
 class: middle, center
 
-<h1><a href=https://therbootcamp.github.io/AML_2021AMLD/_sessions/Fitting/Fitting_practical.html>Practical</a></h1>
+<h1><a href=https://therbootcamp.github.io/ML_2022M4P/_sessions/Fitting/Fitting_practical.html>Practical</a></h1>
 
 
