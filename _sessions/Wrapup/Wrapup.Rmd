@@ -91,7 +91,7 @@ A very incomplete series of good books. Books covers are links leading in severa
   <tr>    
 
   <td>
-  <a href="https://www.tmwr.org/"><img border="0" alt="W3Schools" src="https://www.tidymodels.org/images/tidymodels.png" height="140" ></a>
+  <a href="https://www.tmwr.org/"><img border="0" alt="W3Schools" src="https://www.tmwr.org/images/cover.png" height="180" ></a>
   </td>
 
     <td>
@@ -99,7 +99,7 @@ A very incomplete series of good books. Books covers are links leading in severa
   </td>
   
         <td>
-  <a href="http://www-bcf.usc.edu/~gareth/ISL/ISLR%20First%20Printing.pdf"><img border="0" alt="W3Schools" src="https://images-na.ssl-images-amazon.com/images/I/41EaH4W9LVL._SX332_BO1,204,203,200_.jpg" height="180" ></a>
+  <a href="https://ema.drwhy.ai/"><img border="0" alt="W3Schools" src="https://ema.drwhy.ai/figure/front4.png" height="180" ></a>
   </td>
   
         <td>
@@ -232,7 +232,7 @@ The web is a great place to learn about R.
 
 --->
 
----
+<!---
 
 .pull-left45[
 # Please give us feedback
@@ -250,6 +250,8 @@ The web is a great place to learn about R.
 <p align="center"><br><br><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdXM62m7wsFCx5UvwAYSq14hNQLcQOWq7yQx_hWL_21KqCtDA/viewform?embedded=true" width="430" height="550">Wird geladen...</iframe></p>
 
 ]
+
+---> 
 
 ---
 class: center, middle
