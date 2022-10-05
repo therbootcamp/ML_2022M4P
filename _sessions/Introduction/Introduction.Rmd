@@ -207,7 +207,7 @@ There are two goals in analyzing the data:
 </ul>
 </i>
 
-<a href="https://projecteuclid.org/journals/statistical-science/volume-16/issue-3/Statistical-Modeling--The-Two-Cultures-with-comments-and-a/10.1214/ss/1009213726.full">(Breiman, 2021, p.199)</a>
+<a href="https://projecteuclid.org/journals/statistical-science/volume-16/issue-3/Statistical-Modeling--The-Two-Cultures-with-comments-and-a/10.1214/ss/1009213726.full">(Breiman, 2001, p.199)</a>
 ]
 
 .pull-right35[
@@ -242,7 +242,7 @@ There are two goals in analyzing the data:
 <img src="image/breiman_pred_vs_expl.png" height=400px><br>
 </p>
 
-<a href="https://projecteuclid.org/journals/statistical-science/volume-16/issue-3/Statistical-Modeling--The-Two-Cultures-with-comments-and-a/10.1214/ss/1009213726.full">(Breiman, 2021, p.199)</a>
+<a href="https://projecteuclid.org/journals/statistical-science/volume-16/issue-3/Statistical-Modeling--The-Two-Cultures-with-comments-and-a/10.1214/ss/1009213726.full">(Breiman, 2001, p.199)</a>
 ]
 
 .pull-right35[
@@ -272,13 +272,13 @@ There are two goals in analyzing the data:
 
 
 .pull-left5[
-# Tuning, Training, and Testing
+# Training, Testing, and Tuning
 <ul>
   <li class="m1"><span>In ML, in contrast to classical statistics, we perform multiple steps until we can evaluate a model.</span></li>
   <ul class="level">
-    <li><span><high>Tuning:</high> Specify how the model will be trained by setting <high>hyper parameters</high> (optional).</span></li>
     <li><span><high>Training (Fitting):</high> Fit the model, i.e., find the optimal coefficients given some data.</span></li>
     <li><span><high>Testing (Prediction):</high> Evaluate the model performance on new data.</span></li>
+        <li><span><high>Tuning:</high> Specify how the model will be trained by setting <high>hyper parameters</high> (optional).</span></li>
   </ul>
 </ul>
 
@@ -393,7 +393,6 @@ knitr::include_graphics("image/models.png")
   <li class="m1"><span><high>Schedule</high>
   <br><br>
   <ul class="level">
-    <li><span>Intro to R</span></li>
     <li><span>3 blocks on ML with R</span></li>
   </ul>
   </span></li>
@@ -490,7 +489,7 @@ knitr::include_graphics("image/models.png")
 
 ]
 
----
+<!---
 
 .pull-left3[
 # Introduction
@@ -502,6 +501,8 @@ knitr::include_graphics("image/models.png")
 <img src="image/dirk_markus.png" height="500" align="center">
 </p>
 ]
+--->
+
 ---
 
 class: middle, center

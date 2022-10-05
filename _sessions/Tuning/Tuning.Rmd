@@ -702,7 +702,7 @@ $$
 ```{r, eval = FALSE}
 # Decision tree with a defined cp = .01
 dt_model <- 
-  decision_tree(cost_complexity = .1) %>% 
+  decision_tree(cost_complexity = .01) %>% 
   set_engine("rpart") %>% 
   set_mode("regression")
 

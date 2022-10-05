@@ -594,7 +594,7 @@ $$
 ```r
 # Decision tree with a defined cp = .01
 dt_model &lt;- 
-  decision_tree(cost_complexity = .1) %&gt;% 
+  decision_tree(cost_complexity = .01) %&gt;% 
   set_engine("rpart") %&gt;% 
   set_mode("regression")
 

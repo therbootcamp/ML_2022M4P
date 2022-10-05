@@ -632,7 +632,7 @@ baselers_test <- testing(baselers_split)
 .pull-left4[
 
 <ul>    
-  <li class="m2"><span>To fit training rather than test simply replace <highm>data</highm> in the <mono>recipe</mono>.</span></li>
+  <li class="m1"><span>To fit training rather than test simply replace <highm>data</highm> in the <mono>recipe</mono> and the <mono>fit</mono> function.</span></li>
 </ul>
 
 ]

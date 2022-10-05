@@ -218,7 +218,7 @@ logreg2 = logreg1 +
 .pull-left45[
 
 <ul>
-  <li class="m1"><span>Possible <high>the most important concept</high> in statistics and machine learning.</span></li>
+  <li class="m1"><span>Possibly <high>the most important concept</high> in statistics and machine learning.</span></li>
   <li class="m2"><span>The loss function defines some <high>summary of the errors committed by the model</high>.</span></li>
 </ul>
 
@@ -468,7 +468,7 @@ $$\large \hat{Y} =  Logistic(\beta_{0} + \beta_{1} \times X_1 + ...)$$
 <p style="padding-top:10px"></p>
 
 <ul style="margin-bottom:-20px">
-  <li class="m2"><span>The logistic function <high>maps predictions to the range of 0 and 1</high>, the two class values..</span></li>
+  <li class="m2"><span>The logistic function <high>maps predictions to the range of 0 and 1</high>, the two class values.</span></li>
 </ul>
 
 <p style="padding-top:10px"></p>
